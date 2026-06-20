@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>文案裂变机 · 一个主题,全平台爆款文案</title>
+<meta name="description" content="输入一个主题,一键生成小红书、抖音、公众号、朋友圈等全平台风格化文案。" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="文案裂变机 · 一个主题秒变全平台爆款文案" />
+<meta property="og:description" content="输入一次,一键裂变到小红书/抖音/公众号/朋友圈等 11 个平台,每个平台都按各自爆款套路优化。" />
+<meta name="twitter:card" content="summary" />
+<meta name="theme-color" content="#f3eee2" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23f5421d'/%3E%3Ctext x='50' y='73' font-size='56' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-weight='bold'%3E%E8%A3%82%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f3eee2;
+    --paper-2:#fffdf6;
+    --ink:#181511;
+    --ink-soft:#56504593;
+    --ink-soft-s:#5b554a;
+    --accent:#f5421d;
+    --accent-d:#cf3413;
+    --hl:#ffce2e;
+    --mint:#0f9d58;
+    --line:#181511;
+    --display:"Bricolage Grotesque","Noto Sans SC",sans-serif;
+    --sans:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    --mono:"Space Mono","SFMono-Regular",monospace;
+    --sh:5px 5px 0 var(--ink);
+    --sh-sm:3px 3px 0 var(--ink);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+  /* paper dot texture */
+  body{background-image:radial-gradient(var(--ink-soft) .5px,transparent .5px);background-size:22px 22px;background-position:-11px -11px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  /* header */
+  header{border-bottom:3px solid var(--ink);background:var(--paper)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:13px}
+  .brand .logo{width:40px;height:40px;background:var(--accent);border:2.5px solid var(--ink);box-shadow:var(--sh-sm);display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:800;font-size:22px;transform:rotate(-4deg)}
+  .brand .t b{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.5px;display:block;line-height:1}
+  .brand .t span{font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;color:var(--ink-soft-s)}
+  .api-btn{font-family:var(--sans);font-weight:700;font-size:13.5px;cursor:pointer;background:var(--paper-2);border:2.5px solid var(--ink);box-shadow:var(--sh-sm);padding:10px 16px;display:flex;align-items:center;gap:8px;transition:.12s}
+  .api-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+  .api-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .api-btn .dot{width:9px;height:9px;border-radius:50%;background:#c9c2b4;border:1.5px solid var(--ink)}
+  .api-btn .dot.ok{background:var(--mint)}
+
+  /* hero */
+  .hero{padding:54px 0 26px;text-align:center;position:relative}
+  .badge{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:700;background:var(--hl);border:2px solid var(--ink);padding:5px 13px;box-shadow:var(--sh-sm);transform:rotate(-1.5deg);margin-bottom:22px}
+  .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,6.4vw,62px);line-height:1.02;letter-spacing:-1.5px;margin-bottom:18px}
+  .hero h1 .mark{background:var(--accent);color:#fff;padding:0 12px;display:inline-block;transform:rotate(-1.2deg);box-shadow:var(--sh-sm)}
+  .hero h1 .u{background:linear-gradient(transparent 62%,var(--hl) 62%)}
+  .hero p{font-size:clamp(15px,2vw,18px);color:var(--ink-soft-s);max-width:600px;margin:0 auto;font-weight:500}
+
+  /* composer */
+  .composer{background:var(--paper-2);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:28px;margin:34px 0 16px}
+  .field{margin-bottom:20px}
+  .field label{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin-bottom:9px}
+  .field label .n{font-family:var(--mono);background:var(--ink);color:var(--paper);width:21px;height:21px;display:grid;place-items:center;font-size:12px;flex:none}
+  textarea,input[type=text],input[type=password],select{width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper);border:2.5px solid var(--ink);padding:13px 15px;outline:none;transition:.15s;border-radius:0}
+  textarea{resize:vertical;min-height:88px;line-height:1.6}
+  textarea:focus,input:focus,select:focus{box-shadow:var(--sh-sm);background:#fff}
+  textarea::placeholder,input::placeholder{color:#a59e8f}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:640px){.row{grid-template-columns:1fr}}
+
+  /* tone chips */
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{cursor:pointer;font-size:13.5px;font-weight:500;background:var(--paper);border:2px solid var(--ink);padding:7px 14px;transition:.12s;user-select:none}
+  .chip:hover{background:var(--hl)}
+  .chip.on{background:var(--ink);color:var(--paper);font-weight:700}
+
+  /* platform picker */
+  .plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px}
+  .sel-mini{cursor:pointer;font-size:12px;font-weight:700;color:var(--ink-soft-s);border:2px solid var(--ink);background:var(--paper);padding:3px 11px;transition:.12s;user-select:none}
+  .sel-mini:hover{background:var(--hl);color:var(--ink)}
+  .sel-mini:active{transform:translate(1px,1px)}
+  .plat{cursor:pointer;display:flex;align-items:center;gap:9px;background:var(--paper);border:2px solid var(--ink);padding:11px 12px;transition:.12s;user-select:none;position:relative}
+  .plat:hover{transform:translate(-1px,-1px);box-shadow:var(--sh-sm)}
+  .plat .ic{width:26px;height:26px;border:2px solid var(--ink);display:grid;place-items:center;font-size:14px;flex:none;color:#fff;font-weight:700}
+  .plat .nm{font-size:13.5px;font-weight:500;line-height:1.15}
+  .plat .ck{position:absolute;top:-9px;right:-9px;width:21px;height:21px;background:var(--mint);border:2px solid var(--ink);color:#fff;display:none;place-items:center;font-size:12px;font-weight:700}
+  .plat.on{background:#fff;box-shadow:var(--sh-sm)}
+  .plat.on .ck{display:grid}
+
+  /* generate btn */
+  .gen-row{display:flex;align-items:center;gap:16px;margin-top:24px;flex-wrap:wrap}
+  .gen{cursor:pointer;font-family:var(--display);font-weight:800;font-size:19px;color:#fff;background:var(--accent);border:3px solid var(--ink);box-shadow:var(--sh);padding:15px 34px;transition:.12s;display:flex;align-items:center;gap:11px;letter-spacing:-.3px}
+  .gen:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);background:var(--accent-d)}
+  .gen:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+  .gen:disabled{background:#bdb6a8;cursor:not-allowed;transform:none;box-shadow:var(--sh)}
+  .gen-hint{font-size:13px;color:var(--ink-soft-s);font-family:var(--mono)}
+
+  /* results */
+  .results-head{display:flex;align-items:center;gap:14px;margin:40px 0 20px}
+  .results-head h2{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:-.5px}
+  .results-head .line{flex:1;height:3px;background:var(--ink)}
+  .results{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+  .rcard{background:var(--paper-2);border:2.5px solid var(--ink);box-shadow:var(--sh);display:flex;flex-direction:column;animation:pop .3s both}
+  @keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .rcard-head{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:2.5px solid var(--ink)}
+  .rcard-head .ic{width:28px;height:28px;border:2px solid var(--ink);display:grid;place-items:center;font-size:14px;color:#fff;font-weight:700;flex:none}
+  .rcard-head .nm{font-weight:700;font-size:15px;flex:1}
+  .rcard-head .st{font-family:var(--mono);font-size:11px;color:var(--ink-soft-s)}
+  .rcard-body{padding:16px;font-size:14px;line-height:1.78;white-space:pre-wrap;flex:1;max-height:440px;overflow-y:auto;word-break:break-word}
+  .rcard-body.muted{color:var(--ink-soft-s)}
+  .rcard-foot{display:flex;gap:9px;padding:12px 16px;border-top:2px dashed var(--ink)}
+  .mini{cursor:pointer;font-family:var(--sans);font-weight:700;font-size:13px;border:2px solid var(--ink);background:var(--paper);padding:8px 14px;transition:.12s;display:flex;align-items:center;gap:6px}
+  .mini:hover{background:var(--hl)}
+  .mini.cp{flex:1;justify-content:center}
+  .mini.copied{background:var(--mint);color:#fff}
+  .mini:active{transform:translate(1px,1px)}
+
+  /* spinner */
+  .spin{width:17px;height:17px;border:2.5px solid var(--ink);border-top-color:transparent;border-radius:50%;animation:sp .7s linear infinite;display:inline-block}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  .skeleton{height:13px;background:linear-gradient(90deg,#e7e1d3,#f0eadd,#e7e1d3);background-size:200% 100%;animation:sk 1.3s infinite;margin-bottom:10px;border:1px solid #dcd5c6}
+  @keyframes sk{to{background-position:-200% 0}}
+  .err{color:var(--accent-d);font-weight:500;font-family:var(--mono);font-size:13px}
+
+  /* empty */
+  .empty{text-align:center;padding:60px 20px;color:var(--ink-soft-s)}
+  .empty .ic{font-size:44px;margin-bottom:14px;display:block}
+
+  /* modal */
+  .modal-bg{position:fixed;inset:0;z-index:90;background:rgba(24,21,17,.55);display:none;align-items:center;justify-content:center;padding:24px}
+  .modal-bg.show{display:flex;animation:fd .2s}
+  @keyframes fd{from{opacity:0}to{opacity:1}}
+  .modal{background:var(--paper-2);border:3px solid var(--ink);box-shadow:10px 10px 0 var(--ink);max-width:520px;width:100%;padding:30px;position:relative;max-height:90vh;overflow-y:auto}
+  .modal h3{font-family:var(--display);font-weight:800;font-size:24px;margin-bottom:6px;letter-spacing:-.5px}
+  .modal .sub{font-size:13.5px;color:var(--ink-soft-s);margin-bottom:22px}
+  .modal .field{margin-bottom:16px}
+  .modal label{font-size:13px}
+  .x{position:absolute;top:16px;right:18px;cursor:pointer;font-size:24px;background:none;border:none;line-height:1}
+  .save{width:100%;cursor:pointer;font-family:var(--display);font-weight:800;font-size:17px;color:#fff;background:var(--ink);border:2.5px solid var(--ink);box-shadow:var(--sh-sm);padding:13px;margin-top:6px;transition:.12s}
+  .save:hover{background:var(--accent);transform:translate(-1px,-1px)}
+  .help{font-size:12px;color:var(--ink-soft-s);line-height:1.6;margin-top:8px;background:var(--paper);border:2px solid var(--ink);padding:11px 13px}
+  .help a{color:var(--accent-d);font-weight:700}
+  .help code{font-family:var(--mono);background:var(--ink);color:var(--paper);padding:1px 5px;font-size:11px}
+
+  /* toast */
+  .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(120px);z-index:120;background:var(--ink);color:var(--paper);font-weight:700;font-size:14px;padding:13px 24px;border:2.5px solid var(--ink);box-shadow:var(--sh);transition:transform .3s cubic-bezier(.2,.9,.3,1)}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  footer{border-top:3px solid var(--ink);margin-top:60px;padding:28px 0;text-align:center;font-size:13px;color:var(--ink-soft-s)}
+  footer b{font-family:var(--display);color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo">裂</div>
+      <div class="t"><b>文案裂变机</b><span>CONTENT MULTIPLIER</span></div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <button class="api-btn" id="historyBtn">🕘 历史</button>
+      <button class="api-btn" id="apiBtn"><span class="dot" id="apiDot"></span><span id="apiBtnTxt">配置 API</span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="badge">⚡ 一次输入 · 全平台裂变</div>
+    <h1>一个主题,<span class="mark">秒变</span><br/>全平台<span class="u">爆款文案</span></h1>
+    <p>小红书、抖音、公众号、朋友圈…每个平台<b>各自的爆款套路</b>都已内置。你只管给主题,剩下交给它。</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <!-- composer -->
+  <div class="composer">
+    <div class="field">
+      <label><span class="n">1</span>你想写什么?(主题 / 产品 / 卖点)</label>
+      <textarea id="topic" placeholder="例如:一款帮助职场人快速做PPT的AI工具,主打&quot;输入大纲5分钟出片&quot;&#10;或:分享我用AI做副业三个月的真实经历"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label><span class="n">2</span>语气风格</label>
+        <div class="chips" id="tones"></div>
+      </div>
+      <div class="field">
+        <label><span class="n">3</span>补充要求(选填)</label>
+        <input type="text" id="extra" placeholder="如:面向宝妈人群 / 突出性价比 / 带点幽默" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label style="display:flex;align-items:center;gap:8px"><span class="n">4</span>生成哪些平台?(可多选)<span style="flex:1"></span><span class="sel-mini" id="selAll">全选</span><span class="sel-mini" id="selNone">清空</span></label>
+      <div class="plat-grid" id="plats"></div>
+    </div>
+
+    <div class="gen-row">
+      <button class="gen" id="genBtn">🚀 一键裂变</button>
+      <span class="gen-hint" id="genHint"></span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="results-head" id="resultsHead" style="display:none">
+    <h2>裂变结果</h2><div class="line"></div><button class="mini" id="copyAllBtn" style="white-space:nowrap">📋 复制全部</button>
+  </div>
+  <div class="results" id="results"></div>
+  <div class="empty" id="empty">
+    <span class="ic">✍️</span>
+    <div>填好上面的主题,选好平台,点「一键裂变」</div>
+    <div style="font-size:12px;margin-top:6px">首次使用请先点右上角「配置 API」(支持 DeepSeek / OpenRouter / OpenAI / Kimi / 通义 / Claude)</div>
+  </div>
+</div>
+
+<footer><div class="wrap"><b>文案裂变机</b> · 你的 API Key 只保存在本地浏览器,不经过任何服务器</div></footer>
+
+<!-- settings modal -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <button class="x" id="mx">×</button>
+    <h3>配置 AI 接口</h3>
+    <div class="sub">选一个服务商,填入你自己的 API Key。Key 仅存于本机浏览器。</div>
+    <div class="field">
+      <label>服务商</label>
+      <select id="provider"></select>
+    </div>
+    <div class="field" id="baseField" style="display:none">
+      <label>API 地址(Base URL)</label>
+      <input type="text" id="baseUrl" placeholder="https://..." />
+    </div>
+    <div class="field">
+      <label>模型(可改)</label>
+      <input type="text" id="model" placeholder="模型名" />
+    </div>
+    <div class="field">
+      <label>API Key</label>
+      <input type="password" id="apiKey" placeholder="粘贴你的 Key" />
+    </div>
+    <button class="save" id="saveApi">保存配置</button>
+    <div class="help" id="provHelp"></div>
+  </div>
+</div>
+
+<!-- history panel -->
+<div class="modal-bg" id="histBg">
+  <div class="modal">
+    <button class="x" id="histX">×</button>
+    <h3>历史记录</h3>
+    <div class="sub">最近 20 次生成 · 仅保存在你本地浏览器 · 点任意一条可恢复查看</div>
+    <div id="histList"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">已复制 ✓</div>
+
+<script>
+/* ============================ 配置 ============================ */
+const PROVIDERS = {
+  openrouter:{label:"OpenRouter(推荐·浏览器直连无障碍)",base:"https://openrouter.ai/api/v1",model:"openai/gpt-4o-mini",kind:"openai",
+    help:'优点:支持浏览器直接调用,一个 Key 通各大模型。注册 <a href="https://openrouter.ai/keys" target="_blank">openrouter.ai/keys</a> 获取 Key(<code>sk-or-...</code>)。模型可填 <code>deepseek/deepseek-chat</code>、<code>anthropic/claude-3.5-sonnet</code> 等。'},
+  deepseek:{label:"DeepSeek(便宜·国内友好)",base:"https://api.deepseek.com/v1",model:"deepseek-chat",kind:"openai",
+    help:'国产、便宜、中文好。注册 <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> 获取 Key。若浏览器报 CORS,见下方说明用 OpenRouter 或本地运行。'},
+  openai:{label:"OpenAI",base:"https://api.openai.com/v1",model:"gpt-4o-mini",kind:"openai",
+    help:'OpenAI 官方。Key 见 <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a>。浏览器直连可能受 CORS 限制,推荐用 OpenRouter 中转。'},
+  moonshot:{label:"Moonshot / Kimi",base:"https://api.moonshot.cn/v1",model:"moonshot-v1-8k",kind:"openai",
+    help:'国产 Kimi。Key 见 <a href="https://platform.moonshot.cn" target="_blank">platform.moonshot.cn</a>。'},
+  qwen:{label:"通义千问(DashScope)",base:"https://dashscope.aliyuncs.com/compatible-mode/v1",model:"qwen-plus",kind:"openai",
+    help:'阿里通义。开通 <a href="https://dashscope.console.aliyun.com" target="_blank">DashScope</a> 兼容模式获取 Key。'},
+  anthropic:{label:"Claude(Anthropic)",base:"https://api.anthropic.com",model:"claude-3-5-sonnet-latest",kind:"anthropic",
+    help:'Claude 官方,已开启浏览器直连头。Key 见 <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>(<code>sk-ant-...</code>)。'},
+  custom:{label:"自定义(任意 OpenAI 兼容接口)",base:"",model:"",kind:"openai",
+    help:'任何 OpenAI 兼容服务,自行填写 Base URL 和模型名。'}
+};
+
+const TONES = ["真诚走心","活泼有梗","专业干货","高级感","治愈温柔","犀利观点","搞笑沙雕","励志热血"];
+
+const PLATFORMS = [
+  {id:"xhs",nm:"小红书笔记",ic:"小",color:"#ff2e4d",on:true,
+   sys:"你是操盘过上百篇爆款的小红书资深博主,深谙平台流量密码。请把用户主题写成一篇可直接发布的小红书爆款笔记。硬性要求:1)标题20字内、有情绪有钩子、不虚假;2)开头3行内戳痛点或制造好奇,留住读者;3)正文口语化、短句、多分段,适当用emoji和分隔符;4)遵循「痛点—干货—共鸣」结构,给具体可操作的内容;5)结尾引导互动(收藏/关注/评论);6)末尾给6-8个相关话题标签(#)。只输出笔记本身,不要解释。"},
+  {id:"douyin",nm:"抖音口播",ic:"抖",color:"#111",on:true,
+   sys:"你是百万播放的短视频编导,精通口播脚本的留人节奏。请把用户主题写成一条约60秒的短视频口播脚本。硬性要求:1)前3秒一个强钩子(犀利提问/反常识/制造悬念),否则用户划走;2)中间拆2-3个点,每点一句话说清,口语、有节奏;3)中途埋「但是/没想到」等留人反转;4)结尾一句行动号召或金句收尾。用「口播:」标注台词,适当用「(画面)」提示运镜。只输出脚本。"},
+  {id:"gzh",nm:"公众号",ic:"公",color:"#07c160",on:true,
+   sys:"你是擅长深度内容的公众号主笔。请把用户主题写成一篇公众号文章的标题+开头+结构。硬性要求:1)先给3个高打开率标题备选;2)开头用故事/场景/数据切入,建立代入感(150字左右);3)给出清晰的逻辑结构(分点小标题+每点要写什么);4)穿插1-2句可被划线转发的金句。条理清晰输出。"},
+  {id:"pyq",nm:"朋友圈",ic:"圈",color:"#1aad19",on:true,
+   sys:"你是精通个人IP和软性营销的高手。请把用户主题写成3条不同风格的朋友圈文案。硬性要求:1)每条≤150字,口语、真诚、不硬广;2)体现人设和价值,有植入但不油腻;3)三种风格分别为「干货分享型」「情绪共鸣型」「轻互动提问型」并标注;4)适当用emoji。"},
+  {id:"shipinhao",nm:"视频号标题",ic:"视",color:"#fa9d3b",on:false,
+   sys:"你是视频号运营专家。请围绕用户主题,生成10个适合视频号的高完播/高转发标题或封面文案。要求:口语化、有钩子、戳中中老年与泛人群也能懂;覆盖情绪共鸣型、好奇型、实用清单型、金句型。每条标注类型。"},
+  {id:"zhihu",nm:"知乎回答",ic:"知",color:"#0084ff",on:false,
+   sys:"你是知乎高赞答主。请把用户主题写成一篇高赞回答的框架与开头。要求:1)开头抛出一个结论或反常识观点,抓住注意力;2)用「先讲个事/我的经历」增强可信;3)分点论证,逻辑清晰、有信息增量;4)干货金句收尾。给出开头段+分点提纲。"},
+  {id:"weibo",nm:"微博",ic:"博",color:"#e6162d",on:false,
+   sys:"你是微博运营高手。请把用户主题写成3条适合传播的微博。要求:每条≤140字,有观点或情绪、易转发;至少带1个相关#话题#;风格各异(观点型/共鸣型/实用型)。"},
+  {id:"x",nm:"X / Twitter",ic:"X",color:"#111",on:false,
+   sys:"You are a viral content strategist on X (Twitter). Turn the user's topic into a punchy English thread of 4-6 tweets. Requirements: 1) Tweet 1 is a scroll-stopping hook; 2) each tweet is tight and standalone-quotable; 3) build value progressively; 4) end with a CTA or memorable line. Number the tweets."},
+  {id:"linkedin",nm:"LinkedIn",ic:"in",color:"#0a66c2",on:false,
+   sys:"You are a top LinkedIn creator. Turn the user's topic into a professional yet personal LinkedIn post in English. Requirements: 1) strong first line as the hook (it must work before the 'see more' cut); 2) short punchy paragraphs with line breaks; 3) one concrete insight or story; 4) end with an engaging question and 3-5 relevant hashtags."},
+  {id:"bilibili",nm:"B站",ic:"B",color:"#fb7299",on:false,
+   sys:"你是B站百万UP主的内容策划,懂B站观众吃「信息量+个人观点+不端着」。请把用户主题写成一条B站视频的标题(给3个备选)+开场白(前15秒留人)+内容大纲。要求:1)标题有信息增量或反差,不做标题党;2)开场15秒抛出「看完你能获得什么」+一个钩子;3)大纲分3-5段,标注每段核心;4)语气真诚、有梗、像同好分享,不要爹味说教。"},
+  {id:"kuaishou",nm:"快手",ic:"快",color:"#fe3666",on:false,
+   sys:"你是懂快手老铁文化的内容高手,知道快手要「接地气、真实、有用、不装」。请把用户主题写成一条快手短视频口播脚本(约45秒)。要求:1)开头一句话直给好处或痛点,别绕弯;2)用大白话、短句,像跟老铁唠嗑;3)给2-3个实在的点,每点一句话说清;4)结尾一句行动号召(关注/双击/评论)。用「口播:」标注台词。"}
+];
+
+/* ============================ 状态 ============================ */
+const LS="cm_cfg_v1";
+let cfg=JSON.parse(localStorage.getItem(LS)||"null")||{provider:"openrouter",model:PROVIDERS.openrouter.model,base:PROVIDERS.openrouter.base,key:""};
+let tone=TONES[0];
+const $=s=>document.querySelector(s);
+
+/* ============================ 渲染输入区 ============================ */
+function renderTones(){
+  $("#tones").innerHTML=TONES.map(t=>`<span class="chip${t===tone?' on':''}" data-t="${t}">${t}</span>`).join("");
+  $("#tones").querySelectorAll(".chip").forEach(c=>c.onclick=()=>{tone=c.dataset.t;renderTones();});
+}
+function renderPlats(){
+  $("#plats").innerHTML=PLATFORMS.map(p=>`<div class="plat${p.on?' on':''}" data-id="${p.id}">
+    <span class="ic" style="background:${p.color}">${p.ic}</span><span class="nm">${p.nm}</span><span class="ck">✓</span></div>`).join("");
+  $("#plats").querySelectorAll(".plat").forEach(el=>el.onclick=()=>{
+    const p=PLATFORMS.find(x=>x.id===el.dataset.id);p.on=!p.on;el.classList.toggle("on",p.on);updateHint();});
+}
+function updateHint(){
+  const n=PLATFORMS.filter(p=>p.on).length;
+  $("#genHint").textContent=n?`将生成 ${n} 个平台版本`:"请至少选 1 个平台";
+}
+
+/* ============================ API 设置 ============================ */
+function renderProviderOptions(){
+  $("#provider").innerHTML=Object.entries(PROVIDERS).map(([k,v])=>`<option value="${k}"${k===cfg.provider?' selected':''}>${v.label}</option>`).join("");
+  syncProviderFields();
+}
+function syncProviderFields(){
+  const pk=$("#provider").value,p=PROVIDERS[pk];
+  $("#baseField").style.display=(pk==="custom")?"block":"none";
+  if(pk!=="custom"){$("#baseUrl").value=p.base;}
+  if(cfg.provider!==pk){$("#model").value=p.model;}
+  $("#provHelp").innerHTML=p.help+'<br/><br/>⚠️ <b>遇到 CORS / 跨域报错?</b> 说明该服务商不允许浏览器直连。最省事方案:改用 <b>OpenRouter</b>(默认就支持);或把本工具下载到本地用 <code>python3 -m http.server</code> 打开后再试。';
+}
+function openModal(){
+  renderProviderOptions();
+  $("#provider").value=cfg.provider;
+  $("#baseUrl").value=cfg.base||PROVIDERS[cfg.provider].base;
+  $("#model").value=cfg.model||PROVIDERS[cfg.provider].model;
+  $("#apiKey").value=cfg.key||"";
+  syncProviderFields();
+  $("#modalBg").classList.add("show");
+}
+function closeModal(){$("#modalBg").classList.remove("show");}
+function saveCfg(){
+  const pk=$("#provider").value;
+  cfg={provider:pk,base:(pk==="custom"?$("#baseUrl").value.trim():PROVIDERS[pk].base),model:$("#model").value.trim()||PROVIDERS[pk].model,key:$("#apiKey").value.trim()};
+  localStorage.setItem(LS,JSON.stringify(cfg));
+  updateApiStatus();closeModal();toast("配置已保存 ✓");
+}
+function updateApiStatus(){
+  const ok=!!cfg.key;
+  $("#apiDot").classList.toggle("ok",ok);
+  $("#apiBtnTxt").textContent=ok?"API 已配置":"配置 API";
+}
+
+/* ============================ 调用大模型 ============================ */
+async function callModel(sys,user){
+  const p=PROVIDERS[cfg.provider];
+  if(p.kind==="anthropic"){
+    const r=await fetch(cfg.base+"/v1/messages",{method:"POST",
+      headers:{"Content-Type":"application/json","x-api-key":cfg.key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
+      body:JSON.stringify({model:cfg.model,max_tokens:1600,system:sys,messages:[{role:"user",content:user}]})});
+    if(!r.ok)throw new Error("HTTP "+r.status+" "+(await r.text()).slice(0,160));
+    const d=await r.json();return d.content.map(c=>c.text||"").join("");
+  }else{
+    const r=await fetch(cfg.base+"/chat/completions",{method:"POST",
+      headers:{"Content-Type":"application/json","Authorization":"Bearer "+cfg.key},
+      body:JSON.stringify({model:cfg.model,temperature:0.85,messages:[{role:"system",content:sys},{role:"user",content:user}]})});
+    if(!r.ok)throw new Error("HTTP "+r.status+" "+(await r.text()).slice(0,160));
+    const d=await r.json();return d.choices[0].message.content;
+  }
+}
+function buildUser(){
+  const topic=$("#topic").value.trim();
+  const extra=$("#extra").value.trim();
+  return `主题/产品:${topic}\n语气风格:${tone}${extra?`\n补充要求:${extra}`:""}\n\n请严格按你的角色设定和格式要求创作,直接给成品。`;
+}
+
+/* ============================ 生成流程 ============================ */
+let generating=false;
+async function generate(){
+  if(generating)return;
+  const topic=$("#topic").value.trim();
+  if(!topic){toast("先写点主题嘛 ✍️");$("#topic").focus();return;}
+  if(!cfg.key){toast("请先配置 API Key");openModal();return;}
+  const chosen=PLATFORMS.filter(p=>p.on);
+  if(!chosen.length){toast("至少选 1 个平台");return;}
+
+  generating=true;
+  const btn=$("#genBtn");btn.disabled=true;btn.innerHTML='<span class="spin"></span> 裂变中…';
+  $("#empty").style.display="none";
+  $("#resultsHead").style.display="flex";
+  const res=$("#results");
+  res.innerHTML=chosen.map(p=>cardShell(p)).join("");
+  const user=buildUser();
+
+  await Promise.all(chosen.map(async p=>{
+    const body=document.querySelector(`#body-${p.id}`),st=document.querySelector(`#st-${p.id}`),foot=document.querySelector(`#foot-${p.id}`);
+    try{
+      const out=await callModel(p.sys,user);
+      body.textContent=out;body.classList.remove("muted");
+      st.textContent="完成";
+      foot.style.display="flex";
+    }catch(e){
+      body.innerHTML=`<div class="err">⚠ 生成失败:${esc(e.message)}</div><div style="margin-top:8px;font-size:12.5px;color:var(--ink-soft-s)">多为 Key 错误或 CORS 跨域。可点右上角换用 OpenRouter,或检查 Key/模型名。</div>`;
+      body.classList.remove("muted");st.textContent="失败";
+    }
+  }));
+
+  saveHistory(topic);
+  btn.disabled=false;btn.innerHTML="🚀 再来一次";generating=false;
+}
+function cardShell(p){
+  return `<div class="rcard">
+    <div class="rcard-head"><span class="ic" style="background:${p.color}">${p.ic}</span><span class="nm">${p.nm}</span><span class="st" id="st-${p.id}"><span class="spin" style="width:13px;height:13px"></span></span></div>
+    <div class="rcard-body muted" id="body-${p.id}"><div class="skeleton" style="width:90%"></div><div class="skeleton" style="width:100%"></div><div class="skeleton" style="width:75%"></div><div class="skeleton" style="width:85%"></div></div>
+    <div class="rcard-foot" id="foot-${p.id}" style="display:none">
+      <button class="mini cp" onclick="copyCard('${p.id}',this)">📋 复制</button>
+      <button class="mini" onclick="regen('${p.id}')">↻ 重生成</button>
+    </div>
+  </div>`;
+}
+async function regen(id){
+  const p=PLATFORMS.find(x=>x.id===id);
+  const body=document.querySelector(`#body-${id}`),st=document.querySelector(`#st-${id}`),foot=document.querySelector(`#foot-${id}`);
+  body.innerHTML='<div class="skeleton" style="width:90%"></div><div class="skeleton" style="width:100%"></div><div class="skeleton" style="width:70%"></div>';
+  body.classList.add("muted");st.innerHTML='<span class="spin" style="width:13px;height:13px"></span>';foot.style.display="none";
+  try{const out=await callModel(p.sys,buildUser());body.textContent=out;body.classList.remove("muted");st.textContent="完成";foot.style.display="flex";}
+  catch(e){body.innerHTML=`<div class="err">⚠ ${esc(e.message)}</div>`;st.textContent="失败";}
+}
+function copyCard(id,btn){
+  const body=document.querySelector(`#body-${id}`);
+  navigator.clipboard.writeText(body.textContent).then(()=>{const t=btn.innerHTML;btn.innerHTML="✓ 已复制";btn.classList.add("copied");setTimeout(()=>{btn.innerHTML=t;btn.classList.remove("copied");},1400);toast("已复制 ✓");});
+}
+
+/* ============================ 杂项 ============================ */
+let tt;function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>e.classList.remove("show"),2000);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+$("#apiBtn").onclick=openModal;
+$("#mx").onclick=closeModal;
+$("#saveApi").onclick=saveCfg;
+$("#provider").onchange=()=>{syncProviderFields();};
+$("#modalBg").onclick=e=>{if(e.target.id==="modalBg")closeModal();};
+$("#genBtn").onclick=generate;
+
+/* ============================ 历史记录 + 导出 ============================ */
+const HLS="cm_hist_v1";
+function saveHistory(topic){
+  const items=PLATFORMS.filter(p=>p.on).map(p=>{
+    const b=document.querySelector(`#body-${p.id}`);
+    return {id:p.id,nm:p.nm,content:b?b.textContent:""};
+  }).filter(x=>x.content && !x.content.startsWith("⚠"));
+  if(!items.length)return;
+  const h=JSON.parse(localStorage.getItem(HLS)||"[]");
+  h.unshift({topic,tone,t:Date.now(),items});
+  localStorage.setItem(HLS,JSON.stringify(h.slice(0,20)));
+}
+function openHistory(){
+  const h=JSON.parse(localStorage.getItem(HLS)||"[]");
+  const list=$("#histList");
+  if(!h.length){list.innerHTML='<div style="color:var(--ink-soft-s);padding:24px;text-align:center">还没有历史,先生成一次吧 ✍️</div>';}
+  else{
+    list.innerHTML=h.map((rec,i)=>{
+      const d=new Date(rec.t),dt=`${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+      return `<div class="hist-item" data-i="${i}" style="border:2px solid var(--ink);border-radius:0;padding:13px 15px;margin-bottom:10px;cursor:pointer;background:var(--paper);transition:.12s" onmouseover="this.style.background='var(--hl)'" onmouseout="this.style.background='var(--paper)'">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px">${esc(rec.topic).slice(0,42)||"(无主题)"}</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft-s)">${dt} · ${rec.items.length}个平台 · ${esc(rec.tone||"")}</div>
+      </div>`;
+    }).join("");
+    list.querySelectorAll(".hist-item").forEach(el=>el.onclick=()=>restoreHistory(parseInt(el.dataset.i)));
+  }
+  $("#histBg").classList.add("show");
+}
+function restoreHistory(i){
+  const h=JSON.parse(localStorage.getItem(HLS)||"[]"),rec=h[i];if(!rec)return;
+  $("#topic").value=rec.topic;
+  $("#empty").style.display="none";$("#resultsHead").style.display="flex";
+  $("#results").innerHTML=rec.items.map(it=>{
+    const p=PLATFORMS.find(x=>x.id===it.id)||{color:"#111",ic:"·"};
+    return `<div class="rcard"><div class="rcard-head"><span class="ic" style="background:${p.color}">${p.ic}</span><span class="nm">${esc(it.nm)}</span><span class="st">历史</span></div>
+    <div class="rcard-body">${esc(it.content)}</div>
+    <div class="rcard-foot"><button class="mini cp" onclick="copyBody(this)">📋 复制</button></div></div>`;
+  }).join("");
+  $("#histBg").classList.remove("show");
+  window.scrollTo({top:$("#resultsHead").offsetTop-20,behavior:"smooth"});
+}
+function copyBody(btn){
+  const body=btn.closest(".rcard").querySelector(".rcard-body");
+  navigator.clipboard.writeText(body.textContent).then(()=>{const t=btn.innerHTML;btn.innerHTML="✓ 已复制";btn.classList.add("copied");setTimeout(()=>{btn.innerHTML=t;btn.classList.remove("copied");},1400);toast("已复制 ✓");});
+}
+function copyAll(){
+  const blocks=[...document.querySelectorAll("#results .rcard")].map(c=>{
+    const nm=(c.querySelector(".nm")||{}).textContent||"",b=c.querySelector(".rcard-body");
+    return (b&&b.textContent&&!b.textContent.startsWith("⚠"))?`【${nm}】\n${b.textContent}`:"";
+  }).filter(Boolean);
+  if(!blocks.length){toast("还没有结果可复制");return;}
+  navigator.clipboard.writeText(blocks.join("\n\n──────────\n\n")).then(()=>toast(`已复制全部 ${blocks.length} 个平台 ✓`));
+}
+$("#historyBtn").onclick=openHistory;
+$("#histX").onclick=()=>$("#histBg").classList.remove("show");
+$("#histBg").onclick=e=>{if(e.target.id==="histBg")$("#histBg").classList.remove("show");};
+$("#copyAllBtn").onclick=copyAll;
+
+function setAllPlats(on){PLATFORMS.forEach(p=>p.on=on);renderPlats();updateHint();}
+$("#selAll").onclick=()=>setAllPlats(true);
+$("#selNone").onclick=()=>setAllPlats(false);
+
+renderTones();renderPlats();updateHint();updateApiStatus();
+</script>
+</body>
+</html>
