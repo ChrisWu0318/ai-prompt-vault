@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 提示词怎么写?一套让 AI 听话的万能公式(附模板+对比例子)</title>
+<meta name="description" content="同样用 AI,为什么有人产出能直接用?差别在提示词。这篇教你一套万能公式:角色+任务+约束+输出格式,附 3 组前后对比和 5 个进阶技巧,新手也能立刻上手。" />
+<meta name="keywords" content="AI提示词怎么写,提示词技巧,prompt怎么写,提示词公式,AI指令怎么写,提示词模板,ChatGPT提示词,DeepSeek提示词" />
+<link rel="canonical" href="https://chriswu0318.github.io/ai-prompt-vault/提示词怎么写/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="AI 提示词怎么写?一套让 AI 听话的万能公式" />
+<meta property="og:description" content="角色+任务+约束+输出格式——一套新手也能立刻上手的提示词万能公式,附前后对比和进阶技巧。" />
+<meta property="og:image" content="../og-cover.png" />
+<meta property="og:url" content="https://chriswu0318.github.io/ai-prompt-vault/提示词怎么写/" />
+<meta name="theme-color" content="#11b069" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2311b069'/%3E%3Ctext x='50' y='73' font-size='56' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-weight='bold'%3E金%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"Article",
+  "headline":"AI 提示词怎么写?一套让 AI 听话的万能公式",
+  "description":"用一套'角色+任务+约束+输出格式'的万能公式,教新手写出能直接用的 AI 提示词,附前后对比和进阶技巧。",
+  "image":"https://chriswu0318.github.io/ai-prompt-vault/og-cover.png",
+  "author":{"@type":"Organization","name":"AI 搞钱提示词金库"},
+  "publisher":{"@type":"Organization","name":"AI 搞钱提示词金库"},
+  "inLanguage":"zh-CN"
+}
+</script>
+<style>
+  :root{--bg:#f4f8f5;--surface:#fff;--mint:#e7f7ee;--mint2:#d3f0e0;--ink:#10211a;--ink-soft:#56675e;--ink-faint:#8a9991;--green:#11b069;--green-d:#0b8b51;--green-deep:#0a3a27;--gold:#ffc63a;--red:#d8584a;--line:#e0ebe4;--line2:#cfe0d6;--disp:"Plus Jakarta Sans","Noto Sans SC",sans-serif;--sans:"Noto Sans SC",-apple-system,"PingFang SC",sans-serif;--sh:0 20px 50px -24px rgba(10,58,39,.35)}
+  *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.78;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;z-index:40;background:rgba(244,248,245,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:800;font-size:16px;color:var(--ink);text-decoration:none}
+  .brand .dot{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--green),var(--green-deep));display:grid;place-items:center;color:#fff;font-weight:900;font-size:15px}
+  .nav-cta{background:var(--ink);color:#fff;font-weight:700;font-size:13.5px;padding:8px 16px;border-radius:999px;text-decoration:none}
+  .crumb{font-size:13px;color:var(--ink-faint);margin:18px 0 0}.crumb a{color:var(--green-d);text-decoration:none}
+  .hero{padding:34px 0 14px}
+  .pill{display:inline-flex;gap:8px;background:var(--mint);border:1px solid var(--line2);color:var(--green-d);font-weight:700;font-size:13px;padding:6px 14px;border-radius:999px;margin-bottom:16px}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(26px,5vw,37px);line-height:1.22;letter-spacing:-.5px;margin-bottom:14px}
+  .lead{font-size:clamp(15px,2.2vw,17px);color:var(--ink-soft)}
+  article{padding:14px 0 30px}
+  article h2{font-family:var(--disp);font-weight:800;font-size:23px;margin:36px 0 12px;letter-spacing:-.3px;scroll-margin-top:70px}
+  article h3{font-weight:700;font-size:17px;margin:22px 0 8px;color:var(--green-deep)}
+  article p{margin:12px 0;color:var(--ink-soft)}article p b,article li b{color:var(--ink)}
+  article ul,article ol{margin:12px 0 12px 22px;color:var(--ink-soft)}article li{margin:6px 0}
+  .formula{background:var(--green-deep);color:#fff;border-radius:16px;padding:24px 26px;margin:20px 0;text-align:center}
+  .formula .f{font-family:var(--disp);font-weight:800;font-size:clamp(17px,3.5vw,22px);line-height:1.5}
+  .formula .f span{background:var(--green);padding:2px 10px;border-radius:8px;display:inline-block;margin:4px 3px}
+  .formula .opt{color:#9fcdb5;font-size:13px;margin-top:10px}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}@media(max-width:620px){.cmp{grid-template-columns:1fr}}
+  .cmp .box{border-radius:13px;padding:16px 18px;font-size:14px;line-height:1.7}
+  .cmp .bad{background:#fbeeec;border:1px solid #f1cfca}.cmp .bad h4{color:var(--red)}
+  .cmp .good{background:var(--mint);border:1px solid var(--line2)}.cmp .good h4{color:var(--green-d)}
+  .cmp h4{font-family:var(--disp);font-size:14px;margin-bottom:8px}
+  .cmp code{display:block;background:rgba(0,0,0,.04);border-radius:7px;padding:9px 11px;font-size:12.5px;white-space:pre-wrap;margin-top:6px;color:var(--ink)}
+  .tip{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:0 12px 12px 0;padding:14px 18px;margin:16px 0}
+  .tip b{color:var(--green-deep)}
+  .tpl{background:var(--surface);border:2px dashed var(--line2);border-radius:14px;padding:18px 20px;margin:18px 0;font-size:13.5px;white-space:pre-wrap;line-height:1.7;color:var(--ink)}
+  .cta-box{background:linear-gradient(160deg,var(--green-deep),#0c5436);border-radius:20px;padding:34px 28px;color:#fff;text-align:center;margin:36px 0;box-shadow:var(--sh)}
+  .cta-box h2{font-family:var(--disp);font-weight:800;font-size:22px;margin:0 0 8px;color:#fff}
+  .cta-box p{color:#bfe6d1;font-size:14.5px;margin-bottom:18px;max-width:480px;margin-left:auto;margin-right:auto}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .cta-row a{font-weight:800;font-size:15px;padding:13px 26px;border-radius:999px;text-decoration:none}
+  .cta-row .primary{background:var(--gold);color:var(--green-deep)}
+  .cta-row .ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
+  footer{background:var(--green-deep);color:#bfe6d1;padding:30px 0;text-align:center;font-size:12.5px;margin-top:20px}footer a{color:#ffce3a;font-weight:700;text-decoration:none}
+  .disc{color:#7fb89a;font-size:12.5px;text-align:center;padding:10px 0 0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a href="../index.html" class="brand"><span class="dot">金</span>AI 搞钱提示词金库</a>
+  <a href="../index.html" class="nav-cta">看产品 →</a>
+</div></header>
+
+<div class="wrap"><p class="crumb"><a href="../index.html">首页</a> / 提示词怎么写</p></div>
+
+<section class="hero"><div class="wrap">
+  <div class="pill">✍️ 新手友好 · 附模板</div>
+  <h1>AI 提示词怎么写?<br/>一套让 AI 听话的万能公式</h1>
+  <p class="lead">同样用 AI,为什么有人产出能直接用,你却得到一堆废话?差别不在 AI,在你"怎么问"。这篇给你一套新手也能立刻上手的公式。</p>
+</div></section>
+
+<div class="wrap">
+  <article>
+    <h2>一、先看一个扎心对比</h2>
+    <p>同样想让 AI 写小红书标题:</p>
+    <div class="cmp">
+      <div class="box bad"><h4>❌ 大多数人这么问</h4>帮我写个小红书标题<code>结果:一堆平庸、套路、一看就是 AI 写的标题,没人想点。</code></div>
+      <div class="box good"><h4>✅ 会写提示词的人这么问</h4>你是爆款小红书博主,请围绕"30天瘦8斤的饮食法",写5个标题,每个20字内、有反差或好奇钩子、不夸大,并标注用了什么钩子。<code>结果:5 个能直接用、带钩子的标题 + 你能学到套路。</code></div>
+    </div>
+    <p>区别只有一个:<b>第二种把"要求"说清楚了</b>。这就是提示词的全部秘密——<b>把你脑子里默认的标准,明明白白告诉 AI</b>。</p>
+
+    <h2>二、万能公式:四件事说清楚</h2>
+    <div class="formula">
+      <div class="f"><span>角色</span>+<span>任务</span>+<span>约束</span>+<span>输出格式</span></div>
+      <div class="opt">进阶可再加:上下文背景 · 示例(给它一个范本照着学)</div>
+    </div>
+    <h3>① 角色:让 AI 进入状态</h3>
+    <p>开头给它一个身份,它就会调用对应的"专业模式"。<br/>例:<b>"你是一位深耕小红书的爆款操盘手"</b> / <b>"你是资深亚马逊运营"</b> / <b>"你是十年经验的简历顾问"</b>。</p>
+    <h3>② 任务:到底要它干什么</h3>
+    <p>一句话说清具体要做的事,别含糊。<br/>例:<b>"把下面这段产品介绍,改写成 5 条朋友圈文案"</b>。</p>
+    <h3>③ 约束:你的"隐藏标准"全摊开</h3>
+    <p>这是新手最容易漏、却最关键的一步。你心里默认的要求,AI 不知道——你得说出来:<br/>字数、语气、面向谁、要避免什么、要突出什么、要几条……例:<b>"每条 ≤50 字、口语化、面向宝妈、别太硬广、突出省时"</b>。</p>
+    <h3>④ 输出格式:让结果能直接用</h3>
+    <p>规定它怎么排版输出,省去你二次整理。<br/>例:<b>"用表格输出,三列:标题 | 正文 | 用了什么钩子"</b>。</p>
+
+    <div class="tip">💡 <b>一个记忆口诀:</b>"<b>谁</b>(角色)来给<b>谁</b>(面向人群)<b>做什么</b>(任务),要<b>满足哪些条件</b>(约束),<b>长什么样</b>(格式)。" 把这五个空填上,就是一条好提示词。</div>
+
+    <h2>三、直接抄的万能模板</h2>
+    <div class="tpl">你是【一个什么角色/专家】。
+请帮我【具体任务】。
+我的背景/素材是:【填你的信息】。
+要求:
+1.【约束1,如字数/语气】
+2.【约束2,如面向人群】
+3.【约束3,如要突出/避免什么】
+请用【什么格式】输出。</div>
+    <p>把【】里的内容换成你的,就能用在几乎任何场景。</p>
+
+    <h2>四、3 个常见场景的前后对比</h2>
+    <h3>场景 1 · 写周报</h3>
+    <div class="cmp">
+      <div class="box bad"><h4>❌</h4>帮我写周报</div>
+      <div class="box good"><h4>✅</h4>你是我的职场助理。把我这周做的事整理成一份周报:【粘贴零散记录】。要求:分"本周成果/问题与思考/下周计划"三块,突出量化结果和亮点,语言简洁专业,直接可发。</div>
+    </div>
+    <h3>场景 2 · 提炼产品卖点</h3>
+    <div class="cmp">
+      <div class="box bad"><h4>❌</h4>这个产品有什么卖点</div>
+      <div class="box good"><h4>✅</h4>你是资深营销文案。把这款产品的参数翻译成"用户能感知的购买理由":【参数】。要求:每个卖点用"参数→对用户的好处"的句式,面向【目标人群】,输出 5 条,按打动力排序。</div>
+    </div>
+    <h3>场景 3 · 改"AI 味"太重的文案</h3>
+    <div class="cmp">
+      <div class="box bad"><h4>❌</h4>把这段改得自然点</div>
+      <div class="box good"><h4>✅</h4>下面这段太像 AI 写的,请改得像真人写的:【粘贴】。方法:加入具体细节、个人经历感、口语化短句,去掉空话套话和排比堆砌,保持原意。</div>
+    </div>
+
+    <h2>五、5 个让效果翻倍的进阶技巧</h2>
+    <ol>
+      <li><b>给它一个示例。</b>"照着这个风格写:【范例】"——给范本比给一堆形容词管用十倍。</li>
+      <li><b>让它分步来。</b>复杂任务先说"先列大纲,我确认后再展开",质量更稳。</li>
+      <li><b>不满意就迭代。</b>别重开一段,直接说"第3条太硬广,重写得软一点"——它记得上文。</li>
+      <li><b>明确语气。</b>"用真诚、不油腻的语气"——语气不说,它默认端着。</li>
+      <li><b>让它反问你。</b>"动笔前,先问我3个能让结果更准的问题"——把信息补全再产出。</li>
+    </ol>
+
+    <h2>六、新手最常踩的 3 个坑</h2>
+    <ul>
+      <li><b>太笼统:</b>"写好一点"——什么叫好?把"好"翻译成具体约束。</li>
+      <li><b>一次塞太多:</b>一条提示词想干 5 件事,不如拆开,一件一件来。</li>
+      <li><b>不给背景:</b>AI 不认识你的产品/人群,关键信息得喂给它。</li>
+    </ul>
+
+    <div class="cta-box">
+      <h2>道理懂了,但每次自己写还是累?</h2>
+      <p>我们把"会搞钱、能提效"的高频场景,打磨成了 80 条现成的结构化提示词——角色、约束、格式都配好,复制改两个字就能用。先免费试 15 条。</p>
+      <div class="cta-row">
+        <a href="../免费提示词/" class="primary">免费试 15 条提示词 →</a>
+        <a href="../index.html" class="ghost">看完整 80 条 →</a>
+      </div>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--ink-faint)">延伸阅读:<a href="../常见问题/" style="color:var(--green-d);font-weight:600">普通人用 AI 做副业靠谱吗?9 个最常被问到的问题 →</a></p>
+  </article>
+</div>
+
+<footer><div class="wrap">
+  AI 搞钱提示词金库 · 把"会提问"变成你的搞钱技能<br/>
+  <a href="../index.html">返回首页</a> &nbsp;·&nbsp; <a href="../常见问题/">AI 副业 9 问</a> &nbsp;·&nbsp; <a href="../训练营/试看/">训练营免费试看</a>
+  <div class="disc">本页为方法分享,不构成任何收益承诺。</div>
+</div></footer>
+</body>
+</html>
