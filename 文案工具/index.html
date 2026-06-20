@@ -208,6 +208,7 @@
 
     <div class="gen-row">
       <button class="gen" id="genBtn">🚀 一键裂变</button>
+      <button class="gen" id="demoBtn" style="background:#fff;color:var(--ink);box-shadow:none;border:2px solid var(--ink)">👀 看示例效果</button>
       <span class="gen-hint" id="genHint"></span>
     </div>
   </div>
@@ -221,7 +222,7 @@
   <div class="empty" id="empty">
     <span class="ic">✍️</span>
     <div>填好上面的主题,选好平台,点「一键裂变」</div>
-    <div style="font-size:12px;margin-top:6px">首次使用请先点右上角「配置 API」(支持 DeepSeek / OpenRouter / OpenAI / Kimi / 通义 / Claude)</div>
+    <div style="font-size:12px;margin-top:6px">没有 API Key?先点上面「👀 看示例效果」看看它能产出什么(无需 Key)。想用自己的主题生成,再点右上角「配置 API」(支持 DeepSeek / OpenRouter / OpenAI / Kimi / 通义 / Claude)</div>
   </div>
 </div>
 
@@ -448,11 +449,76 @@ function copyCard(id,btn){
   navigator.clipboard.writeText(body.textContent).then(()=>{const t=btn.innerHTML;btn.innerHTML="✓ 已复制";btn.classList.add("copied");setTimeout(()=>{btn.innerHTML=t;btn.classList.remove("copied");},1400);toast("已复制 ✓");});
 }
 
+/* ============================ 示例效果(无需Key,降低首次体验门槛) ============================ */
+const DEMO_TOPIC="一款主打『熬夜急救』的补水面膜";
+const DEMO={
+xhs:`标题:熬夜脸垮成"班味"?这片面膜让我第二天像睡饱了😴
+
+姐妹们谁懂啊!连着加班一周,同事问我是不是病了😭
+脸暗、卡粉、眼下两片乌云,化妆都救不回来。
+
+直到我开始"急救式"敷这片面膜——
+✅ 熬夜当晚敷15分钟,第二天脸是"亮"的,不是"灰"的
+✅ 补水是真的猛,卡粉星人上妆终于服帖了
+✅ 凉凉地敷上去,肿眼泡也消下去一点
+
+不是说它能让你不熬夜(那得靠自律🤡)
+但如果你也躲不开加班/带娃/赶due,
+至少让第二天的脸,别出卖你的疲惫。
+
+冲之前先看成分表哈,敏感肌先小范围试👇
+#熬夜急救 #面膜推荐 #打工人护肤 #平价好物 #烂脸自救`,
+douyin:`口播:你有没有过那种,熬完夜照镜子、自己都被自己吓一跳的时候?
+(画面:对镜苦笑,暗沉脸色特写)
+口播:脸是灰的、眼袋是垂的,化妆品全堆在脸上下不去。
+口播:我试过早睡——做不到;试过狂喝水——没用。
+(画面:加班、带娃快剪)
+口播:后来我学乖了——不跟熬夜硬扛,我"急救"。
+口播:熬夜当晚敷15分钟这种急救面膜,把水"灌"回去,
+第二天那张脸,至少是亮的、是服帖的。
+口播:它不能帮你早睡,但能帮你的脸,别替你喊累。
+(画面:第二天通透上妆)
+口播:躲不开熬夜的,评论区扣个"急救",我把用法发你。`,
+gzh:`【高打开率标题备选】
+1、《熬夜不可怕,"熬夜脸"才可怕:一份打工人的急救方案》
+2、《我用一片面膜,赎回了加班第二天的脸》
+3、《戒不掉熬夜?那就学会给皮肤"踩刹车"》
+
+【开头】
+凌晨1点,你关掉电脑,镜子里的人却像老了5岁——
+脸是灰的,眼下是垮的,毛孔里像积了一层疲惫。
+我们这代人,早睡是奢侈,熬夜是日常。
+与其在"早点睡"的愧疚里反复横跳,不如换个思路:
+既然躲不开熬夜,能不能把它对脸的伤害,降到最低?
+
+【结构提纲】
+· 一、为什么熬夜后皮肤会"垮":屏障受损+缺水+循环变慢(讲透原理、建立信任)
+· 二、"对抗"没用,"急救"才有用:熬夜当晚 vs 第二天早晨两个黄金窗口怎么做
+· 三、急救核心是"补水+镇定":挑面膜看哪几个点、避开哪些坑
+· 四、给三类人的方案:加班党 / 带娃妈妈 / 赶due学生,各自怎么用
+· 金句:你戒不掉的熬夜,至少别让脸替你买单。`
+};
+function showDemo(){
+  $("#topic").value=DEMO_TOPIC;
+  $("#empty").style.display="none";
+  $("#resultsHead").style.display="flex";
+  const ids=["xhs","douyin","gzh"];
+  $("#results").innerHTML='<div style="grid-column:1/-1;background:#fff8e1;border:2px dashed var(--ink);border-radius:14px;padding:14px 18px;font-size:13.5px;line-height:1.65">👀 <b>这是示例效果</b>(主题:'+esc(DEMO_TOPIC)+')。配置你自己的 API Key 后,点「🚀 一键裂变」就能用<b>你的主题</b>一键生成,还能选 11 个平台、各自复制。</div>'
+    + ids.map(id=>cardShell(PLATFORMS.find(p=>p.id===id))).join("");
+  ids.forEach(id=>{
+    const body=document.querySelector("#body-"+id),st=document.querySelector("#st-"+id),foot=document.querySelector("#foot-"+id);
+    body.textContent=DEMO[id];body.classList.remove("muted");
+    st.textContent="示例";foot.style.display="flex";
+  });
+  $("#resultsHead").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
 /* ============================ 杂项 ============================ */
 let tt;function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>e.classList.remove("show"),2000);}
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
 $("#apiBtn").onclick=openModal;
+$("#demoBtn").onclick=showDemo;
 $("#mx").onclick=closeModal;
 $("#saveApi").onclick=saveCfg;
 $("#provider").onchange=()=>{syncProviderFields();};
