@@ -219,6 +219,11 @@
     <h2>裂变结果</h2><div class="line"></div><button class="mini" id="copyAllBtn" style="white-space:nowrap">📋 复制全部</button>
   </div>
   <div class="results" id="results"></div>
+  <div id="toolCTA" style="display:none;margin-top:26px;background:var(--paper);border:3px solid var(--ink);box-shadow:var(--sh);border-radius:4px;padding:26px 24px;text-align:center">
+    <div style="font-family:var(--display);font-weight:800;font-size:20px;margin-bottom:7px">喜欢这种"一键出活"的感觉?😎</div>
+    <div style="font-size:14px;color:var(--ink-soft-s);max-width:540px;margin:0 auto 18px;line-height:1.7">这个工具帮你写,但<b>"会提问"的套路</b>才是核心。我把 80 条打磨好的搞钱提示词整理成库,复制改两个字就能用——内容 / 营销 / 电商 / 职场 / 变现全覆盖。</div>
+    <a href="../index.html" style="display:inline-block;background:var(--accent);color:#fff;font-family:var(--display);font-weight:800;font-size:16px;padding:13px 30px;border:2.5px solid var(--ink);box-shadow:var(--sh-sm);border-radius:4px;text-decoration:none">¥99 解锁 80 条提示词库 →</a>
+  </div>
   <div class="empty" id="empty">
     <span class="ic">✍️</span>
     <div>填好上面的主题,选好平台,点「一键裂变」</div>
@@ -405,7 +410,7 @@ async function generate(){
   generating=true;
   const btn=$("#genBtn");btn.disabled=true;btn.innerHTML='<span class="spin"></span> 裂变中…';
   $("#empty").style.display="none";
-  $("#resultsHead").style.display="flex";
+  $("#resultsHead").style.display="flex";$("#toolCTA").style.display="block";
   const res=$("#results");
   res.innerHTML=chosen.map(p=>cardShell(p)).join("");
   const user=buildUser();
@@ -501,7 +506,7 @@ gzh:`【高打开率标题备选】
 function showDemo(){
   $("#topic").value=DEMO_TOPIC;
   $("#empty").style.display="none";
-  $("#resultsHead").style.display="flex";
+  $("#resultsHead").style.display="flex";$("#toolCTA").style.display="block";
   const ids=["xhs","douyin","gzh"];
   $("#results").innerHTML='<div style="grid-column:1/-1;background:#fff8e1;border:2px dashed var(--ink);border-radius:14px;padding:14px 18px;font-size:13.5px;line-height:1.65">👀 <b>这是示例效果</b>(主题:'+esc(DEMO_TOPIC)+')。配置你自己的 API Key 后,点「🚀 一键裂变」就能用<b>你的主题</b>一键生成,还能选 11 个平台、各自复制。</div>'
     + ids.map(id=>cardShell(PLATFORMS.find(p=>p.id===id))).join("");
@@ -556,7 +561,7 @@ function openHistory(){
 function restoreHistory(i){
   const h=JSON.parse(localStorage.getItem(HLS)||"[]"),rec=h[i];if(!rec)return;
   $("#topic").value=rec.topic;
-  $("#empty").style.display="none";$("#resultsHead").style.display="flex";
+  $("#empty").style.display="none";$("#resultsHead").style.display="flex";$("#toolCTA").style.display="block";
   $("#results").innerHTML=rec.items.map(it=>{
     const p=PLATFORMS.find(x=>x.id===it.id)||{color:"#111",ic:"·"};
     return `<div class="rcard"><div class="rcard-head"><span class="ic" style="background:${p.color}">${p.ic}</span><span class="nm">${esc(it.nm)}</span><span class="st">历史</span></div>
