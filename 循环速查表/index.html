@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 循环速查表(免费)· 别再一句句问 AI 了,搭会自己跑的循环｜2026</title>
+<meta name="description" content="提示词已过时,2026 该学的是 Loop(循环):一页看懂 4 种 AI 循环、哪个活该搭哪种循环用什么工具、3 个复制即跑的循环模板。真 AI 工程师整理,免费可打印可收藏。" />
+<meta name="keywords" content="AI循环,loop engineering,循环工程,AI自动化,AI智能体,扣子,Dify,AI工作流,AI agent,提示词过时" />
+<link rel="canonical" href="https://chriswu0318.github.io/ai-prompt-vault/循环速查表/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="AI 循环速查表(免费)· 别再一句句问 AI 了" />
+<meta property="og:description" content="提示词过时了,2026 是 Loop(循环):4 种循环 + 循环地图 + 3 个复制即跑的模板。真 AI 工程师整理,免费可打印。" />
+<meta property="og:image" content="https://chriswu0318.github.io/ai-prompt-vault/og-loop.png" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="AI 循环速查表 · 别再一句句问 AI 了,搭会自己跑的循环"/>
+<meta property="og:url" content="https://chriswu0318.github.io/ai-prompt-vault/循环速查表/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://chriswu0318.github.io/ai-prompt-vault/og-loop.png" />
+<meta name="theme-color" content="#0a3a27" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2311b069'/%3E%3Ctext x='50' y='74' font-size='56' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='bold'%3E↻%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#eef3f0;--surface:#fff;--mint:#e7f7ee;--ink:#10211a;--soft:#56675e;--faint:#8a9991;--green:#11b069;--green-d:#0b8b51;--green-deep:#0a3a27;--gold:#e0a93b;--blue:#2f6fb0;--violet:#7c54c8;--rose:#d8584a;--line:#dde7e1;--disp:"Plus Jakarta Sans","Noto Sans SC",sans-serif;--sans:"Noto Sans SC",-apple-system,"PingFang SC",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;padding:24px 16px 60px}
+  .sheet{max-width:920px;margin:0 auto}
+  .head{background:linear-gradient(135deg,var(--green-deep),#0c5436);color:#fff;border-radius:20px;padding:30px 30px 26px;text-align:center;margin-bottom:18px}
+  .head .tag{display:inline-block;background:var(--gold);color:#2a1f06;font-weight:800;font-size:12px;padding:4px 13px;border-radius:999px;margin-bottom:12px}
+  .head h1{font-family:var(--disp);font-weight:800;font-size:clamp(24px,4.5vw,32px);line-height:1.2;margin-bottom:8px}
+  .head h1 .lp{color:var(--gold)}
+  .head p{color:#bfe6d1;font-size:14.5px;max-width:580px;margin:0 auto}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:720px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 22px}
+  .card.full{grid-column:1/-1}
+  .card h2{font-family:var(--disp);font-weight:800;font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+  .card h2 .ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:15px;flex:none;color:#fff}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .vs .col{border-radius:12px;padding:14px}
+  .vs .old{background:#faf0ef;border:1px solid #f0d9d6}.vs .new{background:var(--mint);border:1px solid #c9ebd7}
+  .vs .lab{font-weight:800;font-size:13px;margin-bottom:8px}.vs .old .lab{color:var(--rose)}.vs .new .lab{color:var(--green-d)}
+  .vs p{font-size:12.5px;color:var(--soft);margin-bottom:6px}.vs p:last-child{margin-bottom:0}
+  .row{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px}.row:last-child{border:none}
+  .row .k{font-weight:700;color:var(--green-deep);flex:none;width:128px}
+  .row .v{color:var(--soft)}
+  ul.clean{list-style:none}ul.clean li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.5px;color:var(--soft);display:flex;gap:9px}ul.clean li:last-child{border:none}
+  ul.clean li b{color:var(--ink)}
+  .num{flex:none;width:22px;height:22px;border-radius:7px;background:var(--mint);color:var(--green-d);display:grid;place-items:center;font-size:12px;font-weight:800}
+  .tpl{background:#fafdfb;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12.5px;color:var(--ink);margin:8px 0;line-height:1.65}
+  .tpl b{color:var(--green-deep);font-size:13.5px}
+  .tpl .meta{color:var(--faint);font-size:11.5px}
+  .tpl .step{color:var(--soft)}
+  .pill{display:inline-block;background:var(--mint);color:var(--green-d);font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;margin-left:4px}
+  .bad{color:var(--rose);font-weight:700}
+  .cta{background:linear-gradient(160deg,var(--green-deep),#0c5436);border-radius:20px;padding:32px 26px;color:#fff;text-align:center;margin-top:18px}
+  .cta h2{font-family:var(--disp);font-weight:800;font-size:21px;margin-bottom:8px}
+  .cta p{color:#bfe6d1;font-size:14px;max-width:520px;margin:0 auto 18px}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .cta-row a{font-weight:800;font-size:15px;padding:13px 26px;border-radius:999px;text-decoration:none}
+  .cta-row .primary{background:var(--gold);color:var(--green-deep)}
+  .cta-row .ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
+  .foot{text-align:center;margin-top:18px;color:var(--faint);font-size:12.5px;line-height:1.8}.foot a{color:var(--green-d);font-weight:700;text-decoration:none}
+  @media print{body{background:#fff;padding:0}.head{border-radius:0}.cta{display:none}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI 搞钱提示词库","item":"https://chriswu0318.github.io/ai-prompt-vault/"},{"@type":"ListItem","position":2,"name":"AI 循环速查表","item":"https://chriswu0318.github.io/ai-prompt-vault/%E5%BE%AA%E7%8E%AF%E9%80%9F%E6%9F%A5%E8%A1%A8/"}]}
+</script>
+</head>
+<body>
+<div class="sheet">
+  <div class="head">
+    <span class="tag">🆓 免费 · 2026 新范式 · 可打印可收藏</span>
+    <h1>AI <span class="lp">循环</span>速查表 · Loop</h1>
+    <p>提示词已经过时了。2026 真正该学的是 <b style="color:#fff">Loop(循环)</b>:别再一句句问 AI——搭一个会自己跑的循环,让 AI 替你循环干活。一页看懂怎么搭。</p>
+  </div>
+
+  <div class="grid">
+    <div class="card full">
+      <h2><span class="ic" style="background:var(--violet)">🔄</span>认知升级:从"提问"到"搭循环"</h2>
+      <div class="vs">
+        <div class="col old">
+          <div class="lab">❌ 旧:提示词(一次性提问)</div>
+          <p>你打一句 → AI 答一句 → 不满意再打一句</p>
+          <p>每件事都要你亲自开口、亲自盯着</p>
+          <p>人停,它就停。省不下你的时间</p>
+        </div>
+        <div class="col new">
+          <div class="lab">✅ 新:循环(会自己跑的系统)</div>
+          <p>你搭好一次 → 它自动循环:干活→检查→再干</p>
+          <p>到点自动启动、自己调工具、自己修正</p>
+          <p>你睡觉它也在跑。这才真正省时间/搞钱</p>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--faint);margin-top:10px">※ "Loop Engineering(循环工程)"是 2026 年新提出的范式——重点从"你怎么问 AI"变成"你怎么设计一个会自己跑的循环"。</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ic" style="background:var(--green)">🧩</span>4 种循环(讲人话)</h2>
+      <ul class="clean">
+        <li><span class="num">1</span><div><b>干活循环</b>:AI 自己一步步把任务做完(自己搜、自己写、自己调工具),不用你盯</div></li>
+        <li><span class="num">2</span><div><b>检查循环</b>:给它配个"质检员",出的东西先按标准过一遍,不合格自动打回重做</div></li>
+        <li><span class="num">3</span><div><b>触发循环</b>:设个条件就自动启动——每天定时、来新消息、收到新订单就跑</div></li>
+        <li><span class="num">4</span><div><b>进化循环</b>:把每次结果喂回去,让它越跑越准(哪条爆了就多做哪类)</div></li>
+      </ul>
+      <p style="font-size:11.5px;color:var(--faint);margin-top:6px">套娃组合:1 干活→2 检查→3 触发→4 进化,越往外越聪明。</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ic" style="background:var(--rose)">🚫</span>搭循环避坑</h2>
+      <ul class="clean">
+        <li><span class="num">✕</span><div><span class="bad">以为一键躺赚</span>:循环要搭、要喂数据、偶尔维护,不是开了就躺赚</div></li>
+        <li><span class="num">✕</span><div><span class="bad">一上来搭超复杂的</span>:先搭一个最小的能跑起来,再一层层加</div></li>
+        <li><span class="num">✕</span><div><span class="bad">全自动碰敏感事</span>:涉及钱/客户隐私的,留个人工确认关口</div></li>
+        <li><span class="num">✕</span><div><span class="bad">没有检查循环</span>:不加质检,它会"自信地"跑错一整天</div></li>
+      </ul>
+    </div>
+
+    <div class="card full">
+      <h2><span class="ic" style="background:var(--blue)">🗺️</span>循环地图:哪个活该搭哪种循环、用什么工具</h2>
+      <div class="row"><span class="k">每天出内容选题</span><span class="v">触发+干活循环 · <b>扣子(Coze)</b>定时 Bot + 联网搜索</span></div>
+      <div class="row"><span class="k">自动回客户咨询</span><span class="v">干活+检查循环 · <b>Dify</b> 知识库客服(答不了转人工)</span></div>
+      <div class="row"><span class="k">日报/周报自动写</span><span class="v">触发+干活循环 · <b>扣子</b> / 飞书多维表 AI / Claude Code <code>/loop</code></span></div>
+      <div class="row"><span class="k">竞品·关键词监控</span><span class="v">触发循环 · <b>扣子</b> + 网页读取,变化了自动播报</span></div>
+      <div class="row"><span class="k">评论/私信分类打标</span><span class="v">干活循环 · <b>Dify</b> / <b>n8n</b> 自动分流意向客户</span></div>
+      <div class="row"><span class="k">一稿铺全平台</span><span class="v">干活循环 · 文案裂变机(本店免费工具,一个主题→多平台)</span></div>
+      <div class="row"><span class="k">让整套越跑越好</span><span class="v">进化循环 · 记录结果→喂回调整(进阶,先把前面跑通)</span></div>
+    </div>
+
+    <div class="card full">
+      <h2><span class="ic" style="background:var(--gold)">⚙️</span>3 个"复制即跑"的循环模板(照着搭你的第一个)</h2>
+      <div class="grid" style="gap:10px">
+        <div>
+          <div class="tpl"><b>① 每日选题循环</b> <span class="pill">扣子定时Bot</span>
+            <div class="meta">目的:每天自动给你 10 个内容选题,不再憋选题</div>
+            <div class="step">触发:每天早 8 点 → 搜本领域热点 → AI 按你人群筛选生成选题 → 打分排序 → 推送到你微信</div>
+          </div>
+          <div class="tpl"><b>② 客服自动答循环</b> <span class="pill">Dify</span>
+            <div class="meta">目的:24h 自动回常见问题,答不了的转你</div>
+            <div class="step">触发:有人提问 → 理解问题 → 查你上传的知识库 → 命中就答 / 没把握就说"帮你转人工"</div>
+          </div>
+        </div>
+        <div>
+          <div class="tpl"><b>③ 周报自动循环</b> <span class="pill">扣子/飞书AI</span>
+            <div class="meta">目的:每周五自动出一份有亮点的周报</div>
+            <div class="step">触发:每周五 17 点 → 收集你这周记录的事 → AI 整理成"成果/问题/下周计划"、成果量化 → 发你确认</div>
+          </div>
+          <div class="tpl" style="background:var(--mint);border-color:#c9ebd7"><b>🔁 怎么把它变"进化循环"</b>
+            <div class="step">给上面任何一个循环加一步:每周回看"哪次结果最好",把规律写回它的设定里——下周它就更准。这就是高手和新手的分水岭。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h2>想要现成能导入、复制即跑的循环模板包?</h2>
+    <p>上面是"怎么搭"的地图。完整版把每个循环做成可直接导入扣子/Dify 的模板 + 图文搭建教程,普通人照着点几下就能跑起来——这是"提示词包"的 2026 升级版。先免费拿一批提示词上手,完整循环包正在上新。</p>
+    <div class="cta-row">
+      <a href="../免费提示词/" class="primary">先免费试 15 条提示词 →</a>
+      <a href="../index.html" class="ghost">看完整工具库 →</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    真·大厂 AI 工程师整理。打印贴墙更顺手(Ctrl/Cmd+P)。觉得有用,欢迎收藏分享 🙏<br/>
+    <a href="../index.html">← 回首页</a> &nbsp;·&nbsp; <a href="../速查表/">AI 提效速查表</a> &nbsp;·&nbsp; <a href="../提示词生成器/">提示词生成器</a> &nbsp;·&nbsp; <a href="../文案工具/">文案裂变机</a><br/>
+    <span style="opacity:.7">本表为方法分享,不构成任何收益承诺;循环需自行搭建与维护。</span>
+  </div>
+</div>
+</body>
+</html>
